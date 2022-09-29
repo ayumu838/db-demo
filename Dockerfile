@@ -6,7 +6,7 @@ RUN apt-get update -qq \
 
 WORKDIR /db-demo
 COPY Gemfile /db-demo/Gemfile
-# COPY Gemfile.lock /db-demo/Gemfile.lock
+COPY Gemfile.lock /db-demo/Gemfile.lock
 RUN bundle install
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
