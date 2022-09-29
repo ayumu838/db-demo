@@ -1,14 +1,15 @@
 services:
   db:
     container_name: dbdemo
-    image: mysql
+    build: ./mysql/
     volumes:
-      - ./tmp/db:/var/lib/mysql
+      - ./mysql/db:/var/lib/mysql
     environment:
-      POSTGRES_PASSWORD: password
+      MYSQL_DATABASE: db_demo
+      MYSQL_ROOT_PASSWORD: rootpassword
   web:
     container_name: dbdemoapp
-    build: .
+    build: ./rails/
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/db-demo
