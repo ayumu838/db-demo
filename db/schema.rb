@@ -21,7 +21,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_29_093312) do
   create_table "entries", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "work_id", null: false
     t.bigint "member_id"
-    t.datetime "entry_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["member_id"], name: "fk_rails_963b1503cb"
