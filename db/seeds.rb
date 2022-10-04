@@ -14,7 +14,7 @@ Faker::Config.locale = :en
 Shop.transaction do
   RECORD.times do
     Shop.create(
-      company_id: Random.rand(RECORD),
+      company_id: Company.first.id + Random.rand(RECORD),
       name: Faker::Company.name,
       description: 'dummy' * Random.rand(10)
     )
@@ -24,7 +24,7 @@ end
 Work.transaction do
   (RECORD * 4).times do
     Work.create(
-      shop_id: Random.rand(RECORD),
+      shop_id: Shop.first.id + Random.rand(RECORD),
       name: Faker::Company.name,
       description: 'dummy' * Random.rand(10),
       salary: 1000 + Random.rand(1000)
@@ -38,7 +38,7 @@ Member.transaction do
   (RECORD * 4).times do
     Member.create(
       name: Faker::Name.name,
-      email: Faker::Internet.email,
+      mail: Faker::Internet.email,
     )
   end
 end
@@ -46,8 +46,8 @@ end
 Entry.transaction do
   (RECORD * 5).times do
     Entry.create(
-      work_id: Random.rand(RECORD * 4),
-      member_id: Random.rand(RECORD *  4)
+      work_id: Work.first.id + Random.rand(RECORD * 5),
+      member_id: Member.first.id + Random.rand(RECORD *  5)
     )
   end
 end
