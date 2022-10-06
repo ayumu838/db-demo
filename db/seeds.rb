@@ -39,6 +39,7 @@ Member.transaction do
     Member.create(
       name: Faker::Name.name,
       mail: Faker::Internet.email,
+      birthday: Faker::Date.between(from: '1960-01-01', to: '2003-12-31')
     )
   end
 end
